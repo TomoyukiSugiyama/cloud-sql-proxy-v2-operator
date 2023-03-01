@@ -1,6 +1,6 @@
 # cloudsql
 ## Overview
-Save time for gcloud sql instances list and cloud_sql_proxy command.  
+Save time for gcloud sql instances list and cloud-sql-proxy command.  
 ![output](https://user-images.githubusercontent.com/66108143/201511654-c577bc7a-bcdb-45e9-a64c-f0abe4792680.gif)
 
 ## Install
@@ -8,8 +8,8 @@ Save time for gcloud sql instances list and cloud_sql_proxy command.
 ```
 1. Install Cloud SQL Auth Proxy 
 https://cloud.google.com/sql/docs/postgres/sql-proxy?hl=ja#install
-$ chmod +x cloud_sql_proxy
-$ sudo mv cloud_sql_proxy /usr/local/bin/
+$ chmod +x cloud-sql-proxy
+$ sudo mv cloud-sql-proxy /usr/local/bin/
 
 2. Install Gcloud CLI & Auth
 https://cloud.google.com/sdk/docs/install?hl=ja
@@ -18,7 +18,7 @@ gcloud auth application-default login
 
 3. Check Preparation
 $ gcloud --version
-$ cloud_sql_proxy --version
+$ cloud-sql-proxy --version
 ```
 - Insall
 Chose `Download` or `Build` or `brew install`
@@ -106,6 +106,6 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 - [x] Add Select Database feature  
 → Add getDatabase & get listDatabase func
 - [ ] Add proxy & connect mode
-- [x] Add Doctor feature(check cloud_sql_proxy & postgres & mysql)  
+- [x] Add Doctor feature(check cloud-sql-proxy & postgres & mysql)  
 → Add doctor command
 - [x] brew install
