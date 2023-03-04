@@ -19,4 +19,4 @@ release/*
 
 dist/
 
-cloudsql
+cloud-sql-proxy-v2-operator
