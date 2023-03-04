@@ -185,8 +185,8 @@ func connectInstance(port int) {
 		dbTypeName = strings.TrimSuffix(string(getdbtypeOut), "\n")
 	}
 	if strings.Contains(dbTypeName, "POSTGRES") {
-		cmd := exec.Command("cloud-sql-proxy", "--auto-iam-authn", "--address", "0.0.0.0", "--private-ip ", "--port", strconv.Itoa(port), sqlConnectionName)
-		cmd.Stdout = os.Stdout
+		cmdstr := "cloud-sql-proxy --auto-iam-authn --address 0.0.0.0 --private-ip --port " + strconv.Itoa(port) + " " + sqlConnectionName
+		cmd := exec.Command("bash", "-c", cmdstr)
 		err := cmd.Start()
 		if err != nil {
 			log.Fatal(err)
