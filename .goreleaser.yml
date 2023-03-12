@@ -163,7 +163,7 @@ brews:
     # So you can `brew test` your formula.
     # Default is empty.
     test: |
-      system "#{bin}/cloud-sql-proxy-v2-operator --version"
+      system "#{bin}/cloud-sql-proxy-v2-operator version"
     #   # ...
 
     # Custom install script for brew.
