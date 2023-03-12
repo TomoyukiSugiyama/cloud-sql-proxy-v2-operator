@@ -5,3 +5,7 @@ This project is forked from [s-okayama/cloudsql](https://github.com/s-okayama/cl
 
 ## Install
 
+```
+brew tap TomoyukiSugiyama/homebrew-cloud-sql-proxy-v2-operator
+brew install tomoyukisugiyama/cloud-sql-proxy-v2-operator/cloud-sql-proxy-v2-operator
+```
