@@ -56,7 +56,7 @@ brews:
       owner: TomoyukiSugiyama
 
       # Repository name. (templateable)
-      name: homebrew-cloud-sql-proxy-v2-operator
+      name: homebrew-tap
 
       # Optionally a branch can be provided. (templateable)
       #
