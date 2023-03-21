@@ -9,6 +9,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var c *Config
+
 var rootCmd = &cobra.Command{
 	Use:   "cloud-sql-proxy-v2-operator [sub]",
 	Short: "CloudSQL Proxy Operator",
@@ -18,13 +20,15 @@ var connectCmd = &cobra.Command{
 	Use:   "connect",
 	Short: "connect to cloudsql instance",
 	Run: func(cmd *cobra.Command, args []string) {
+
 		port, _ := cmd.Flags().GetInt("port")
+		c.SetPort(port)
 		_, err := net.Listen("tcp", ":"+strconv.Itoa(port))
 		if err != nil {
 			fmt.Printf("Port already in use\n")
 			os.Exit(1)
 		}
-		connectInstance(port)
+		c.connectInstance()
 	},
 }
 
@@ -50,7 +54,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print the version number of cloudsql",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("cloud-sql-proxy-v2-operator 0.1.4")
+		fmt.Println("cloud-sql-proxy-v2-operator 0.2.0")
 	},
 }
 
@@ -72,5 +76,6 @@ func Execute() {
 
 func init() {
 	rootCmd.AddCommand(disconnectCmd, connectCmd, listCmd, versionCmd, doctorCmd)
+	c = New()
 	connectCmd.PersistentFlags().Int("port", 5432, "port")
 }
