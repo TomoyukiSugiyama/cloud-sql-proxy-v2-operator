@@ -9,3 +9,11 @@ This project is forked from [s-okayama/cloudsql](https://github.com/s-okayama/cl
 brew tap TomoyukiSugiyama/homebrew-tap
 brew install tomoyukisugiyama/tap/cloud-sql-proxy-v2-operator
 ```
+
+## Completion
+
+```sh
+# zsh completion
+source <(cloud-sql-proxy-v2-operator completion zsh)
+compdef _cloud-sql-proxy-v2-operator cloud-sql-proxy-v2-operator
+```
