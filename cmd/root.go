@@ -54,7 +54,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print the version number of cloudsql",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("cloud-sql-proxy-v2-operator 0.1.4")
+		fmt.Println("cloud-sql-proxy-v2-operator 0.2.0")
 	},
 }
 
