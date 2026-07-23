@@ -1,4 +1,5 @@
 # .goreleaser.yaml
+version: 2
 before:
   hooks:
     - go mod download
@@ -8,21 +9,23 @@ builds:
   main: ./
   binary: cloud-sql-proxy-v2-operator
 archives:
-- replacements:
-    darwin: Darwin
-    386: i386
-    amd64: x86_64
+- name_template: >-
+    {{ .ProjectName }}_
+    {{- title .Os }}_
+    {{- if eq .Arch "amd64" }}x86_64
+    {{- else if eq .Arch "386" }}i386
+    {{- else }}{{ .Arch }}{{ end }}
 checksum:
   name_template: 'checksums.txt'
 snapshot:
-  name_template: "{{ .Tag }}-next"
+  version_template: "{{ .Tag }}-next"
 changelog:
   sort: asc
   filters:
     exclude:
     - '^docs:'
     - '^test:'
-brews:
+homebrew:
   -
     # Name template of the recipe
     # Default to project name
