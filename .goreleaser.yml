@@ -25,7 +25,7 @@ changelog:
     exclude:
     - '^docs:'
     - '^test:'
-homebrew:
+brews:
   -
     # Name template of the recipe
     # Default to project name
