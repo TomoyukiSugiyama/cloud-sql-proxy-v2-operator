@@ -161,15 +161,23 @@ func (c *Config) getDb() {
 }
 
 func (c *Config) getDbType() {
-	getDbTypeCommand := fmt.Sprintf("gcloud sql instances describe " + c.sqlInstanceName + " --project=" + c.project + " --format='value(databaseVersion)'")
-	execDbTypeCommand := exec.Command("bash", "-c", getDbTypeCommand)
-	dbType, err := execDbTypeCommand.Output()
+	ctx := context.Background()
 
+	sqladminService, err := sqladmin.NewService(ctx)
 	if err != nil {
+		log.Printf("failed to create sqladmin service: %v\n", err)
 		c.SetDbType("<dbtype>")
-	} else {
-		c.SetDbType(strings.TrimSuffix(string(dbType), "\n"))
+		return
 	}
+
+	instance, err := sqladminService.Instances.Get(c.project, c.sqlInstanceName).Context(ctx).Do()
+	if err != nil {
+		log.Printf("failed to get instance %q info: %v\n", c.sqlInstanceName, err)
+		c.SetDbType("<dbtype>")
+		return
+	}
+
+	c.SetDbType(instance.DatabaseVersion)
 }
 
 func connectWithPrivateIp() bool {
@@ -212,6 +220,7 @@ func (c *Config) getUserName() {
 	user := exec.Command("bash", "-c", command)
 	userOut, err := user.Output()
 	if err != nil {
+		log.Printf("failed to get active gcloud account (try `gcloud auth login`): %v\n", err)
 		c.SetUserName("<username>")
 	} else {
 		c.SetUserName(strings.TrimSuffix(string(userOut), "\n"))
