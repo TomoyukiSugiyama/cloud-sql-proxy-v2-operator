@@ -1,13 +1,13 @@
 module TomoyukiSugiyama/cloud-sql-proxy-v2-operator
 
-go 1.25.8
+go 1.26.0
 
 require (
 	github.com/chzyer/readline v1.5.1
 	github.com/fatih/color v1.19.0
 	github.com/manifoldco/promptui v0.9.0
 	github.com/spf13/cobra v1.10.2
-	google.golang.org/api v0.295.0
+	google.golang.org/api v0.297.0
 )
 
 require (
